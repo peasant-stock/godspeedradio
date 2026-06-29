@@ -1,17 +1,37 @@
 ---
-
+import MainLayout from "../layouts/MainLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Player from "../components/Player.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<MainLayout title="Godspeed Radio">
+  <Header />
+
+  <main>
+    <section class="hero">
+      <h1></h1>
+
+      <p>
+        This site is under construction ฅ^•ﻌ•^ฅ
+      </p>
+    </section>
+
+	<section id="residents" class="block">
+		<div class="block-content">
+			<h1>RESIDENTS</h1>
+		</div>
+	
+	</section>
+
+	<section id="schedule" class="block">
+		<div class="block-content">
+			<h1>SCHEDULE</h1>
+		</div>
+	</section>
+
+    <Player />
+  </main>
+
+  <Footer />
+</MainLayout>

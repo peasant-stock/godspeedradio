@@ -1,0 +1,108 @@
+:root {
+  --bg: #111111;
+  --header-bg: #000000;
+  --header-text: #00ff00;
+  --accent: #75706e;
+
+  --body-font: Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: #111;
+  color: #eee;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  background: var(--header-bg);
+  color: var(--header-text);
+  font-family: Arial, sans-serif;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  padding: 1rem 2rem;
+}
+
+.logo{
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+nav {
+  display: flex;
+  gap: 1rem;
+}
+
+nav a {
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--header-text);
+  text-decoration: none;
+}
+
+nav a:hover {
+    color: var(--accent);
+}
+
+main {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.block{
+    font-family: var(--body-font);
+    width: 100%;
+    padding: 1rem 2rem;
+}
+
+.block-content{
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.block:nth-child(odd) {
+    background:#000000;
+    color:#00ff00;
+}
+
+.block:nth-child(even) {
+    background:#00ff00;
+    color:#000000;
+}
+
+.hero {
+  text-align: center;
+  padding: 4rem 0;
+  font-family: var(--body-font);
+}
+
+.player {
+  position: sticky;
+  top: 72px;
+
+  z-index: 999;
+
+  background: #222;
+
+  padding: 1rem;
+  border-bottom: 1px solid #333;
+}
+
+footer {
+  text-align: center;
+  padding: 2rem;
+  background: #1c1c1c;
+}
