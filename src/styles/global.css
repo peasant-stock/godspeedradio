@@ -1,8 +1,8 @@
 :root {
   --bg: #111111;
-  --header-bg: #000000;
-  --header-text: #00ff00;
-  --accent: #75706e;
+  --black: #000000;
+  --green: #00ff00;
+  --gray: #75706e;
 
   --body-font: Arial, sans-serif;
 }
@@ -14,8 +14,8 @@
 body {
   margin: 0;
   font-family: system-ui, sans-serif;
-  background: #111;
-  color: #eee;
+  background: var(--black);
+  color: #e5e5e5;
 }
 
 header {
@@ -23,20 +23,26 @@ header {
   top: 0;
   z-index: 1000;
 
-  background: var(--header-bg);
-  color: var(--header-text);
-  font-family: Arial, sans-serif;
+  background: var(--black);
+  color: var(--green);
+  font-family: var(--body-font);
 
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-end;
 
   padding: 1rem 2rem;
 }
 
-.logo{
+.logo {
     font-size: 2rem;
     font-weight: bold;
+}
+
+.logo a {
+    color: var(--green);
+    text-decoration: none;
 }
 
 nav {
@@ -47,12 +53,12 @@ nav {
 nav a {
   font-size: 1rem;
   font-weight: bold;
-  color: var(--header-text);
+  color: var(--green);
   text-decoration: none;
 }
 
 nav a:hover {
-    color: var(--accent);
+    color: var(--gray);
 }
 
 main {
@@ -74,13 +80,13 @@ main {
 }
 
 .block:nth-child(odd) {
-    background:#000000;
-    color:#00ff00;
+    background: var(--black);
+    color: var(--green);
 }
 
 .block:nth-child(even) {
-    background:#00ff00;
-    color:#000000;
+    background: var(--green);
+    color: var(--black);
 }
 
 .hero {
