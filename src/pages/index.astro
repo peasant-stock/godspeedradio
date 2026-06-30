@@ -3,15 +3,33 @@ import MainLayout from "../layouts/MainLayout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import Player from "../components/Player.astro";
+import Papa from "papaparse";
+
+const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRblmTAoiB1uszXYgUFdifv-vU5nVfzjDj58gfbjLt6NbRTgvgFrrPt4tJBWAGYwViNgS9QjPB_fjgF/pub?gid=0&single=true&output=csv";
+
+const response = await fetch(CSV_URL);
+const csvText = await response.text();
+const { data: residents } = Papa.parse(csvText, {
+	header: true,
+	skipEmptyLines: true,
+});
+
+function slugify(name) {
+	return name
+		.toLowerCase()
+		.trim()
+		.replace(/[^a-z0-9\s-]/g, "")
+		.replace(/\s+/g, "-");
+}
 ---
 
 <MainLayout title="Godspeed Radio">
   <Header />
 
+  <Player />
+
   <main>
     <section class="hero">
-      <h1></h1>
-
       <p>
         This site is under construction 🔨ฅ^•ﻌ•^ฅ
       </p>
@@ -19,18 +37,30 @@ import Player from "../components/Player.astro";
 
 	<section id="residents" class="block">
 		<div class="block-content">
-			<h1>RESIDENTS</h1>
+			<h2>RESIDENTS</h2>
+			<div class="residents-grid">
+				{residents.map((resident) => (
+					<a 
+						href={`/residents/${slugify(resident["Resident Name"])}`} 
+						class="resident-tile"
+						target="_blank"
+						rel="noopener"
+					>
+						<img src={resident["Resident Photo Path"]} alt={resident["Resident Name"]} />
+						<p>{resident["Resident Name"]}</p>
+					</a>
+				))}
+			</div>
 		</div>
-	
 	</section>
 
 	<section id="schedule" class="block">
 		<div class="block-content">
-			<h1>SCHEDULE</h1>
+			<h2>SCHEDULE</h2>
 		</div>
 	</section>
 
-    <Player />
+
   </main>
 
   <Footer />
