@@ -3,8 +3,48 @@
     <a href="/">GODSPEED RADIO</a>
   </div>
 
-  <nav>
+  <button class="hamburger" id="hamburger-btn" aria-label="Open menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</header>
+
+<nav id="main-nav">
+    <button class="close-btn" id="close-btn" aria-label="Close menu">x</button>
     <a href="#residents">RESIDENTS</a>
     <a href="#schedule">SCHEDULE</a>
-  </nav>
-</header>
+</nav>
+
+<div class="nav-overlay" id="nav-overlay"></div>
+
+<script>
+    const hamburger = document.getElementById("hamburger-btn")!;
+    const nav = document.getElementById("main-nav")!;
+    const overlay = document.getElementById("nav-overlay")!;
+    const closeBtn = document.getElementById("close-btn")!;
+
+    function openMenu() {
+        nav.classList.add("open");
+        overlay.classList.add("open");
+        hamburger.setAttribute("aria-label", "Close menu");
+    }
+
+    function closeMenu() {
+        nav.classList.remove("open");
+        overlay.classList.remove("open");
+        hamburger.setAttribute("aria-label", "Open menu");
+    }
+
+    hamburger?.addEventListener("click", () => {
+        nav.classList.contains("open") ? closeMenu() : openMenu();
+    });
+
+    overlay.addEventListener("click", closeMenu);
+
+    closeBtn.addEventListener("click", closeMenu);
+
+    nav.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", closeMenu);
+    });
+</script>
