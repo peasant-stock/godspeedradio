@@ -1,0 +1,60 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import Player from "../../components/Player.astro";
+import Papa from "papaparse";
+import { slugify } from "../../utils/slugify.js";
+
+export async function getStaticPaths() {
+  const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRblmTAoiB1uszXYgUFdifv-vU5nVfzjDj58gfbjLt6NbRTgvgFrrPt4tJBWAGYwViNgS9QjPB_fjgF/pub?gid=0&single=true&output=csv";
+  const response = await fetch(CSV_URL);
+  const csvText = await response.text();
+  const { data: residents } = Papa.parse(csvText, {
+    header: true,
+    skipEmptyLines: true,
+  });
+
+  return residents.map((resident) => ({
+    params: { slug: slugify(resident["Resident Name"]) },
+    props: { resident },
+  }));
+}
+
+const { resident } = Astro.props;
+---
+
+<MainLayout title={resident["Resident Name"]}>
+  <Header />
+  <Player />
+  <main>
+    <section class="block resident-detail">
+      <div class="block-content">
+        <img 
+          src={resident["Resident Photo Path"]} 
+          alt={resident["Resident Name"]} 
+        />
+        <h2>{resident["Resident Name"]}</h2>
+        <p class="show-info">{resident["Show Name"]} — {resident["Show Day"]} {resident["Show Time"]}</p>
+        <p class="bio">{resident["Resident Bio"]}</p>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</MainLayout>
+
+<style>
+  .resident-detail img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+  .show-info {
+    font-weight: bold;
+  }
+  .bio {
+    max-width: 600px;
+    line-height: 1.6;
+  }
+</style>

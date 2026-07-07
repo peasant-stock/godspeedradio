@@ -4,6 +4,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import Player from "../components/Player.astro";
 import Papa from "papaparse";
+import { slugify } from "../utils/slugify.js";
 
 const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRblmTAoiB1uszXYgUFdifv-vU5nVfzjDj58gfbjLt6NbRTgvgFrrPt4tJBWAGYwViNgS9QjPB_fjgF/pub?gid=0&single=true&output=csv";
 
@@ -13,14 +14,6 @@ const { data: residents } = Papa.parse(csvText, {
 	header: true,
 	skipEmptyLines: true,
 });
-
-function slugify(name) {
-	return name
-		.toLowerCase()
-		.trim()
-		.replace(/[^a-z0-9\s-]/g, "")
-		.replace(/\s+/g, "-");
-}
 ---
 
 <MainLayout title="Godspeed Radio">

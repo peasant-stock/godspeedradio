@@ -4,3 +4,40 @@
     <span class="player-status">Stream will appear here!</span>
   </div>
 </section>
+
+<style>
+    .player {
+        position: sticky;
+        top: 72px;
+
+        z-index: 999;
+
+        background: #222;
+        font-family: var(--body-font);
+
+        padding: 1rem;
+        border-bottom: 1px solid #333;
+    }
+
+    .player-controls {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .play-btn {
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 50%;
+        border: none;
+        background: var(--green);
+        color: var(--black);
+        font-size: 1rem;
+        cursor: pointer;
+    }
+
+    .player-status {
+        color: #aaa;
+        font-size: 0.9rem;
+    }
+</style>
